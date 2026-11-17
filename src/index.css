@@ -1,0 +1,164 @@
+@import "tailwindcss";
+
+@theme {
+  --font-sans: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+  /* The page background and the card surface, also used behind dropdown options. */
+  --color-ink: #070a13;
+  --color-surface: #0f1424;
+}
+
+html { color-scheme: dark; }
+
+body {
+  margin: 0;
+  min-height: 100vh;
+  background-color: #070a13;
+  color: #e6e9f2;
+  -webkit-font-smoothing: antialiased;
+}
+
+/* Soft colour glows behind everything. */
+.app-backdrop {
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  overflow: hidden;
+  pointer-events: none;
+  background:
+    radial-gradient(60rem 40rem at 10% -10%, rgba(139, 92, 246, 0.22), transparent 60%),
+    radial-gradient(50rem 35rem at 110% 10%, rgba(34, 211, 238, 0.14), transparent 60%),
+    radial-gradient(40rem 30rem at 50% 120%, rgba(99, 102, 241, 0.16), transparent 60%);
+}
+
+/* A faint grid over the glows. */
+.app-backdrop::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.035) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.035) 1px, transparent 1px);
+  background-size: 48px 48px;
+  mask-image: radial-gradient(ellipse at 50% 0%, black 30%, transparent 75%);
+}
+
+.gradient-text {
+  background-image: linear-gradient(120deg, #c4b5fd 0%, #818cf8 40%, #22d3ee 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+  color: transparent;
+}
+
+.glass-card {
+  background: linear-gradient(180deg, rgba(20, 26, 46, 0.78), rgba(13, 17, 32, 0.78));
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  box-shadow: 0 30px 80px -30px rgba(0, 0, 0, 0.8), inset 0 1px 0 rgba(255, 255, 255, 0.05);
+  backdrop-filter: blur(16px);
+  -webkit-backdrop-filter: blur(16px);
+}
+
+@keyframes float-in {
+  from { opacity: 0; transform: translateY(12px); }
+  to { opacity: 1; transform: none; }
+}
+.float-in { animation: float-in 0.5s ease-out both; }
+
+@keyframes pulse-ring {
+  0% { box-shadow: 0 0 0 0 rgba(139, 92, 246, 0.45); }
+  100% { box-shadow: 0 0 0 18px rgba(139, 92, 246, 0); }
+}
+.pulse-ring { animation: pulse-ring 1.6s ease-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .float-in, .pulse-ring { animation: none; }
+}
+
+code {
+  font-family: var(--font-mono);
+  font-size: 0.9em;
+  padding: 0.1em 0.35em;
+  border-radius: 6px;
+  background: rgba(255, 255, 255, 0.08);
+}
+
+/* Text inputs and selects. */
+@utility field {
+  width: 100%;
+  border-radius: var(--radius-xl);
+  border: 1px solid rgb(255 255 255 / 0.12);
+  background-color: rgb(255 255 255 / 0.03);
+  padding: 0.5rem 0.875rem;
+  color: var(--color-slate-100);
+  transition: border-color 0.15s, box-shadow 0.15s;
+  &::placeholder { color: var(--color-slate-500); }
+  &:hover:not(:disabled) { border-color: rgb(167 139 250 / 0.6); }
+  &:focus { outline: none; border-color: var(--color-violet-400); box-shadow: 0 0 0 4px rgb(139 92 246 / 0.2); }
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+}
+
+/* A native select with its own chevron, so it matches on every platform. */
+@utility field-select {
+  appearance: none;
+  cursor: pointer;
+  padding-right: 2.25rem;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%239aa3b8' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='m6 9 6 6 6-6'/%3E%3C/svg%3E");
+  background-repeat: no-repeat;
+  background-position: right 0.75rem center;
+  background-size: 1rem;
+  & option, & optgroup { background-color: var(--color-surface); color: var(--color-slate-100); }
+}
+
+/* A checkbox drawn to match the theme. */
+@utility checkbox {
+  appearance: none;
+  flex-shrink: 0;
+  width: 1.125rem;
+  height: 1.125rem;
+  border-radius: 0.3rem;
+  border: 1.5px solid var(--color-slate-500);
+  background-color: rgb(255 255 255 / 0.03);
+  cursor: pointer;
+  transition: background-color 0.15s, border-color 0.15s;
+  &:hover:not(:disabled) { border-color: var(--color-violet-400); }
+  &:checked {
+    border-color: transparent;
+    background-color: var(--color-violet-500);
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='3.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M5 12.5l4.5 4.5L19 7.5'/%3E%3C/svg%3E");
+    background-size: 0.8rem;
+    background-position: center;
+    background-repeat: no-repeat;
+  }
+  &:focus-visible { outline: 2px solid var(--color-violet-400); outline-offset: 2px; }
+  &:disabled { opacity: 0.5; cursor: not-allowed; }
+}
+
+@keyframes indeterminate {
+  from { transform: translateX(-100%); }
+  to { transform: translateX(250%); }
+}
+.progress-indeterminate { animation: indeterminate 1.4s ease-in-out infinite; }
+
+@media (prefers-reduced-motion: reduce) {
+  .progress-indeterminate { animation-duration: 3s; }
+}
+
+.ad-slot { margin: 0.75rem auto; text-align: center; max-width: 100%; }
+.ad-slot__label { font-size: 0.65rem; text-transform: uppercase; letter-spacing: 0.06em; color: #64748b; margin-bottom: 0.25rem; }
+.ad-slot__frame { margin: 0 auto; display: block; background: transparent; }
+.ad-slot--sticky-mobile {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  z-index: 30;
+  padding: 0.25rem 0.5rem calc(0.25rem + env(safe-area-inset-bottom));
+  background: rgba(7, 10, 19, 0.92);
+  border-top: 1px solid rgba(255, 255, 255, 0.08);
+}
+@media (min-width: 768px) {
+  .ad-slot--sticky-mobile { display: none; }
+}
+.ad-smartlink { font-size: 0.8rem; color: #94a3b8; }
+.ad-smartlink a { color: #67e8f9; }
+.seo-prerender { position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0, 0, 0, 0); }

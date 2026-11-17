@@ -1,0 +1,10 @@
+dist
+build
+node_modules
+external-assets/
+__pycache__/
+.venv/
+cookies.txt
+downloader-password.env
+*-cookies.txt
+test-media/

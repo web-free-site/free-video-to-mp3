@@ -1,0 +1,7 @@
+name = "free-video-to-mp3"
+compatibility_date = "2025-11-01"
+
+[assets]
+directory = "dist"
+html_handling = "auto-trailing-slash"
+not_found_handling = "none"

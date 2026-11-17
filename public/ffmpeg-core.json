@@ -1,0 +1,9 @@
+{
+  "license": "LGPL-2.1-or-later",
+  "description": "Single-threaded FFmpeg WebAssembly build without GPL libraries (no libx264/libx265). Recipe and sources: vendor/ffmpeg-lgpl-source/. Rebuild with Docker per vendor/ffmpeg-lgpl-source/README.md.",
+  "coreJsUrl": "https://assets.web-free.site/free-video-to-mp3/ffmpeg-core.js",
+  "coreWasmUrl": "https://assets.web-free.site/free-video-to-mp3/ffmpeg-core.wasm",
+  "wasmBytes": 30391151,
+  "fallbackWasmBytes": 30391151,
+  "devNote": "Local dev serves identical files from /ffmpeg-cdn/ via Vite (external-assets/ffmpeg-lgpl/). Host wasm/js on a CDN or R2 custom domain for production — each file must stay under 25 MiB per Worker asset limit; wasm is loaded in-browser and not deployed as a Worker static asset."
+}

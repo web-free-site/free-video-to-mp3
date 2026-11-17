@@ -1,0 +1,44 @@
+{
+  "name": "free-video-to-mp3",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "engines": {
+    "node": ">=22.18"
+  },
+  "dependencies": {
+    "@base-ui/react": "1.9.0",
+    "@ffmpeg/ffmpeg": "^0.12.15",
+    "@ffmpeg/util": "^0.12.2",
+    "react": "^19.3.1",
+    "react-dom": "^19.3.1",
+    "react-router-dom": "^7.18.5"
+  },
+  "scripts": {
+    "fetch-ffmpeg-core": "node scripts/fetch-ffmpeg-lgpl.mjs",
+    "predev": "node scripts/fetch-ffmpeg-lgpl.mjs",
+    "dev": "vite",
+    "build": "tsc && vite build && node scripts/prerender-seo.mjs && node scripts/generate-sitemap.mjs",
+    "preview": "vite preview",
+    "test": "vitest run",
+    "lint": "eslint ."
+  },
+  "devDependencies": {
+    "@eslint/js": "10.0.1",
+    "@tailwindcss/vite": "^4.3.3",
+    "@types/node": "^26.6.5",
+    "@types/react": "^19.3.0",
+    "@types/react-dom": "^19.3.0",
+    "@vitejs/plugin-react": "^5.2.0",
+    "eslint": "10.14.0",
+    "eslint-plugin-react-hooks": "7.1.1",
+    "globals": "17.14.0",
+    "playwright": "1.63.0",
+    "tailwindcss": "^4.1.7",
+    "typescript": "^7.0.2",
+    "typescript-eslint": "8.72.1",
+    "vite": "8.3.5",
+    "vitest": "5.0.5",
+    "wrangler": "^4.0.0"
+  }
+}
