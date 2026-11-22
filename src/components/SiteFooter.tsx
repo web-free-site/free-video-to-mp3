@@ -43,6 +43,9 @@ export default function SiteFooter() {
           <Link to="/how-to-convert-a-video-to-mp3-in-the-browser" className="hover:text-white">
             How to convert video to MP3
           </Link>
+          <Link to="/how-to-choose-an-mp3-bitrate" className="hover:text-white">
+            How to choose an MP3 bitrate
+          </Link>
           <Link to="/about" className="hover:text-white">
             About
           </Link>

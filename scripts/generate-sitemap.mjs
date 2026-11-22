@@ -8,6 +8,7 @@ const paths = [
   '/mov-to-mp3',
   '/webm-to-mp3',
   '/how-to-convert-a-video-to-mp3-in-the-browser',
+  '/how-to-choose-an-mp3-bitrate',
   '/about',
   '/privacy',
   '/terms',
