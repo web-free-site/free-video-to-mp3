@@ -18,7 +18,7 @@
     "fetch-ffmpeg-core": "node scripts/fetch-ffmpeg-lgpl.mjs",
     "predev": "node scripts/fetch-ffmpeg-lgpl.mjs",
     "dev": "vite",
-    "build": "tsc && vite build && node scripts/prerender-seo.mjs && node scripts/generate-sitemap.mjs && node scripts/inject-more-tools.mjs",
+    "build": "tsc && vite build && node scripts/prerender-seo.mjs && node scripts/generate-sitemap.mjs && node scripts/inject-more-tools.mjs && node scripts/inject-hub-legal.mjs",
     "preview": "vite preview",
     "test": "vitest run",
     "lint": "eslint ."
