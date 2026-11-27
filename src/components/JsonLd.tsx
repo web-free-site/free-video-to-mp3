@@ -13,7 +13,8 @@ export function JsonLdWebApp() {
       applicationCategory: 'MultimediaApplication',
       operatingSystem: 'Web browser',
       offers: { '@type': 'Offer', price: '0', priceCurrency: 'USD' },
-      description: 'Convert local video files to MP3 in the browser. No upload, no server processing.',
+      description:
+        'Convert MP4, MOV, WebM, MKV, and other videos to MP3 free in your browser. FFmpeg WebAssembly runs locally—no upload, no account, no watermark.',
       browserRequirements: 'Requires JavaScript and WebAssembly',
     };
     let el = document.getElementById(SCRIPT_ID) as HTMLScriptElement | null;
