@@ -1,5 +1,9 @@
 import fs from 'node:fs';
 import path from 'node:path';
+import {
+  buildFaqJsonLdString,
+  buildHomepagePrerenderSection,
+} from './homepage-seo-data.mjs';
 
 const HOST = 'https://free-video-to-mp3.web-free.site';
 const dist = path.resolve('dist');
@@ -104,3 +108,24 @@ for (const page of pages) {
 }
 
 console.log('Prerendered', pages.length, 'SEO HTML shells into dist/');
+
+function injectHomepageIndex() {
+  const indexPath = path.join(dist, 'index.html');
+  let html = fs.readFileSync(indexPath, 'utf8');
+  if (!html.includes('id="seo-prerender"')) {
+    const block = buildHomepagePrerenderSection();
+    html = html.replace('<div id="root"></div>', `${block}\n<div id="root"></div>`);
+  }
+  if (!html.includes('id="faq-json-ld"')) {
+    const ld = `<script type="application/ld+json" id="faq-json-ld">${buildFaqJsonLdString()}</script>`;
+    html = html.replace('</head>', `${ld}\n  </head>`);
+  }
+  fs.writeFileSync(indexPath, html);
+  const h1Count = (html.match(/<h1\b/gi) ?? []).length;
+  if (h1Count !== 1) {
+    console.warn(`Warning: dist/index.html has ${h1Count} <h1> tags (expected 1).`);
+  }
+}
+
+injectHomepageIndex();
+console.log('Injected homepage SEO into dist/index.html');

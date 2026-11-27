@@ -2,38 +2,13 @@ import ConverterPage from './ConverterPage';
 import { JsonLdFaq, JsonLdWebApp } from '../components/JsonLd';
 import { usePageMeta } from '../seo/usePageMeta';
 import { HUB_GUIDE_URL, HUB_REF_URL, SITE_NAME, SITE_URL } from '../site';
+import { HOMEPAGE_FAQ } from '../../scripts/homepage-seo-data.mjs';
 
 const META_TITLE = 'Free Video to MP3 Converter — Extract MP3 in your browser | No upload';
 const META_DESCRIPTION =
   'Convert MP4, MOV, WebM, MKV, and other videos to MP3 free in your browser. FFmpeg WebAssembly runs locally—no upload, no account, no watermark.';
 
-const FAQ = [
-  {
-    question: 'Does this free video to MP3 converter upload my files?',
-    answer:
-      'No. Conversion runs entirely in your browser with WebAssembly. Your video and MP3 never leave your device or get sent to our servers.',
-  },
-  {
-    question: 'Which video formats can I convert to MP3?',
-    answer:
-      'Common containers such as MP4, MOV, WebM, MKV, AVI, MPEG, MPG, M4V, and 3GP are supported when FFmpeg can read the audio track inside the file.',
-  },
-  {
-    question: 'Why does the first conversion take longer?',
-    answer:
-      'On first use the app downloads the LGPL FFmpeg WebAssembly core once (about 29 MB) and caches it in your browser. Later conversions on this device start much faster.',
-  },
-  {
-    question: 'Can I choose MP3 quality or bitrate?',
-    answer:
-      'Yes. Pick constant bitrate (CBR), variable bitrate (VBR), or average bitrate (ABR), and set a quality level before you convert. The default 192 kbps suits most music and speech.',
-  },
-  {
-    question: 'Does the converter work on phones and tablets?',
-    answer:
-      'Yes, in modern mobile browsers that support WebAssembly (Chrome, Safari, Firefox, Edge). Very large videos may be limited by available RAM, so shorter clips convert more reliably on phones.',
-  },
-];
+const FAQ = HOMEPAGE_FAQ;
 
 export default function HomePage() {
   usePageMeta({
